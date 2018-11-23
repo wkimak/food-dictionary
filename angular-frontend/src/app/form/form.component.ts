@@ -10,11 +10,11 @@ import { IngrediantsService } from '../services/ingrediants/ingrediants.service'
 export class FormComponent {
   searchTerm: string = '';
   autoComplete: string = '';
-  autoCompleteList = null;
+  autoCompleteList: Array<any> = null;
   showAutoComplete: boolean = false;
-  
+
   constructor(private autoCompleteService: AutoCompleteService, private ingrediantsService: IngrediantsService) {
-    this.autoCompleteService.autoCompleteList.subscribe((foods) => {
+    this.autoCompleteService.autoCompleteList.subscribe((foods: Array<any>) => {
       this.autoCompleteList = foods;
       if(!this.autoCompleteList.length) {
         this.showAutoComplete = false;

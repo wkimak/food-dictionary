@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IngrediantsService } from '../services/ingrediants/ingrediants.service';
 
 @Component({
   selector: 'app-ingrediants',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ingrediants.component.css']
 })
 export class IngrediantsComponent implements OnInit {
-  title='Ingrediants';
-  constructor() { }
+  title: string = 'Ingrediants';
+  instructions: string = null;
+  constructor(private ingrediantsService: IngrediantsService) {
+    this.ingrediantsService.ingrediants.subscribe((instructions: string) => {
+      this.instructions = instructions;
+    }) 
+  }
 
   ngOnInit() {
   }

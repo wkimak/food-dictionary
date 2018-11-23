@@ -10,14 +10,14 @@ namespace cs_server.Controllers
 {
     [Route("api/autoComplete")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class autoCompleteController : ControllerBase
     {
         
-        [HttpGet("{searchTerm}")]
-        public ActionResult<string> Get(string searchTerm)
+        [HttpGet("{autoComplete}")]
+        public ActionResult<string> Get(string autoComplete)
         {   
             try {
-                WebRequest request = WebRequest.Create($"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query={searchTerm}");
+                WebRequest request = WebRequest.Create($"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/ingredients/autocomplete?query={autoComplete}");
                 request.Headers.Add("X-Mashape-Key: f0mUTn6g2XmshMMiP7HJe4xrUNs0p1OOzyrjsnIMQCaJm629rJ");
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream dataStream = response.GetResponseStream();
