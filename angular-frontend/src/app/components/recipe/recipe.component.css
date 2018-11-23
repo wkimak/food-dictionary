@@ -1,0 +1,12 @@
+.recipe_container {
+    overflow-y: scroll;
+    padding: 0 50px;
+}
+
+.recipe_container h1 {
+    margin-left: -45px;
+}
+
+.recipe_container p {
+    margin-top: 20px;
+}

@@ -9,13 +9,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace cs_server.Controllers
 {
-    [Route("api/food/ingrediants")]
+    [Route("api/food/recipe")]
     [ApiController]
-    public class ingrediantsController : ControllerBase
+    public class recipeController : ControllerBase
     {
         
         [HttpGet("{searchTerm}")]
-        public ActionResult<string> Get(string searchTerm)
+        public ActionResult<string[]> Get(string searchTerm)
         {   
             try {
                 WebRequest request = WebRequest.Create($"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/random?limitLicense=false&number=1&tags={searchTerm}");
@@ -26,10 +26,12 @@ namespace cs_server.Controllers
                 string foodResults = reader.ReadToEnd();
                 var parsed = JsonConvert.DeserializeObject<dynamic>(foodResults);
                 string instructions = parsed.recipes[0].instructions;
-                return instructions;
+                string url = parsed.recipes[0].sourceUrl;
+                string [] output = new string [] { instructions, url };
+                return output;
           } catch(Exception WebException) {
                 Console.WriteLine("ERROR fetching ingrediants", WebException);
-                return "Error fetching ingrediants";
+                return new string [0];
           }
         }
     }

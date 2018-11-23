@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AutoCompleteService } from '../services/autoComplete/autoComplete.service';
-import { IngrediantsService } from '../services/ingrediants/ingrediants.service';
+import { AutoCompleteService } from '../../services/autoComplete/autoComplete.service';
+import { RecipeService } from '../../services/recipe/recipe.service';
+import { RestaurantsService } from '../../services/restaurants/restaurants.service';
 
 @Component({
   selector: 'app-form',
@@ -12,14 +13,21 @@ export class FormComponent {
   autoComplete: string = '';
   autoCompleteList: Array<any> = null;
   showAutoComplete: boolean = false;
+  sourceUrl: string = '';
 
-  constructor(private autoCompleteService: AutoCompleteService, private ingrediantsService: IngrediantsService) {
+  constructor(private autoCompleteService: AutoCompleteService, 
+              private recipeService: RecipeService, 
+              private restaurantsService: RestaurantsService) {
     this.autoCompleteService.autoCompleteList.subscribe((foods: Array<any>) => {
       this.autoCompleteList = foods;
       if(!this.autoCompleteList.length) {
         this.showAutoComplete = false;
       }
     }) 
+
+    this.recipeService.recipe.subscribe((sourceUrl: any) => {
+      this.sourceUrl = sourceUrl[1];
+    })
   }
 
   handleKey(e) {
@@ -39,7 +47,8 @@ export class FormComponent {
 
   fetchFood() {
     this.autoComplete = '';
-    this.ingrediantsService.fetchIngrediants(this.searchTerm);
+    this.recipeService.fetchRecipe(this.searchTerm);
+    this.restaurantsService.fetchRestaurants(this.searchTerm);
   }
 
 }

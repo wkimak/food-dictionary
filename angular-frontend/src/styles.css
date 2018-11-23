@@ -7,7 +7,7 @@
 .foodFeed_container div:not(.autoComplete_container) {
     border: 1px solid black;
     margin: 10px;
-    height: 300px;
+    height: 500px;
     width: 600px;
 }
 
