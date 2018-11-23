@@ -1,0 +1,13 @@
+.navbar_container {
+    height: 70px;
+    width: 100%;
+    background-color: pink;
+}
+
+.navbar_container span {
+    display: inline-block;
+    margin-left: 30px;
+    margin-top: 20px;
+    font-size: 22px;
+    font-family: Arial, Helvetica, sans-serif;
+}
