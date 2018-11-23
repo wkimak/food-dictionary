@@ -1,0 +1,14 @@
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.csprojAssemblyReference.cache
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.csproj.CoreCompileInputs.cache
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.RazorAssemblyInfo.cache
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.RazorAssemblyInfo.cs
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.AssemblyInfoInputs.cache
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.AssemblyInfo.cs
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/bin/Debug/netcoreapp2.1/cs-server.deps.json
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/bin/Debug/netcoreapp2.1/cs-server.runtimeconfig.json
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/bin/Debug/netcoreapp2.1/cs-server.runtimeconfig.dev.json
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/bin/Debug/netcoreapp2.1/cs-server.dll
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/bin/Debug/netcoreapp2.1/cs-server.pdb
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.RazorTargetAssemblyInfo.cache
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.dll
+/Users/williamkimak/Documents/Web Development/Angular/food-dictionary/cs-server/obj/Debug/netcoreapp2.1/cs-server.pdb

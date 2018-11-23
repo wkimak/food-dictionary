@@ -3,3 +3,16 @@
     margin: 0;
     padding: 0;
 }
+
+.foodFeed_container div:not(.autoComplete_container) {
+    border: 1px solid black;
+    margin: 10px;
+    height: 300px;
+    width: 600px;
+}
+
+.foodFeed_container h1 {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 5px;
+}

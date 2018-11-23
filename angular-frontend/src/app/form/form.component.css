@@ -1,8 +1,7 @@
 .form_container {
     border: 1px solid black;
-    width: 500px;
+    width: 600px;
     height: 200px;
-    float: right;
     margin: 10px 10px 0 0;
     padding-top: 50px;
 }
@@ -21,4 +20,19 @@
 .form_container button {
     height: 35px;
     background-color: pink;
+}
+
+.autoComplete_container {
+    width: 90%;
+    margin: auto;
+    background-color: pink;
+    opacity: 0.5;
+}
+
+.autoComplete_container ul {
+  list-style: none;
+}
+
+.autoComplete_container li {
+    border-bottom: 1px solid black;
 }

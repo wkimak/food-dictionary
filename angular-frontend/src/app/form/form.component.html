@@ -1,4 +1,13 @@
-<form class='form_container'>
-  <input type='text' placeholder='Search Food' />
-  <button>Search</button>
+<form class='form_container' #foodForm="ngForm" 
+      (ngSubmit)='fetchFood()' autocomplete="off">
+  <input type='text' placeholder='Search Food' 
+         (keyup)='handleKey($event)' [(ngModel)]='searchTerm' 
+         name='searchTerm' autocomplete="off" required />
+  <div *ngIf='showAutoComplete'class='autoComplete_container'>
+    <ul>
+      <li *ngFor='let food of autoCompleteList'>{{food.name}}</li>
+    </ul>
+  </div>
+  <button type='submit'>Search</button>
 </form>
+
