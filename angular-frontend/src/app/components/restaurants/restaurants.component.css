@@ -1,0 +1,16 @@
+.restaurants_chart {
+    border: 1px solid red;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+    height: 300px;
+    width: 560px;
+    left: 20px;
+}
+
+.restaurants_svg {
+    display: block;
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+}

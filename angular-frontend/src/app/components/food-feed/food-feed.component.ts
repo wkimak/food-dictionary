@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-food-feed',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./food-feed.component.css']
 })
 export class FoodFeedComponent implements OnInit {
+
+    @Input() restaurantData: Array<any>;
 
   constructor() { }
 
