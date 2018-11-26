@@ -18,101 +18,95 @@ export class RestaurantsComponent implements OnInit {
   title: string = 'Restaurants';
   constructor() { }
 
-  buildChart() {
-    var margin = {top: 20, right: 30, bottom: 170, left: 40},
-    width = 500 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-   
-    d3.select(this.chartElement.nativeElement)
-    .attr('width', width + margin.left + margin.right)
-    .attr('height', height + margin.top + margin.bottom)
+  private svgMargins: any = {top: 20, right: 30, bottom: 170, left: 40};
+  private width: number = 500 - this.svgMargins.left - this.svgMargins.right;
+  private height: number = 400 - this.svgMargins.top - this.svgMargins.bottom;
 
-   const svg = d3.select(this.dataContainer.nativeElement)
-    .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+  buildChart() {
+   // select svg element and set width/height
+    d3.select(this.chartElement.nativeElement)
+    .attr('width', this.width + this.svgMargins.left + this.svgMargins.right)
+    .attr('height', this.height + this.svgMargins.top + this.svgMargins.bottom)
+  // select svg's inner data container, shift to left and up
+   const dataContainer = d3.select(this.dataContainer.nativeElement)
+    .attr('transform', 'translate(' + this.svgMargins.left + ',' + this.svgMargins.top + ')');
     
     // scale bars to multiiply by 29.4x 
-    let y = d3.scaleLinear()
+    const yScale = d3.scaleLinear()
     .domain([0, 10])
-    .range([height, 0]);
+    .range([this.height, 0]);
 
-    let x = d3.scaleBand()
-    .range([width, 0])
+    const xScale = d3.scaleBand()
+    .range([this.width, 0])
     .padding(0.1);
 
-    const yAxis = d3.axisLeft(y);
-    const xAxis = d3.axisBottom(x);
-
-   svg.append('g')
+    const yAxis = d3.axisLeft(yScale);
+    const xAxis = d3.axisBottom(xScale);
+  // append y axis
+   dataContainer.append('g')
       .attr('class', 'y_axis')
       .call(yAxis)
       .style('transform', 'translate(-10px, 0)');
-
-  svg.append('g')
-     .attr("transform", "translate(0," + height + ")")
+ // append x axis
+  dataContainer.append('g')
+     .attr("transform", "translate(0," + this.height + ")")
      .call(xAxis);
-
   }
 
   handleData() {
-    
-    const margin = {top: 20, right: 30, bottom: 170, left: 40},
-    width = 500 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
-  
-    const svg = d3.select(this.dataContainer.nativeElement);
+    const dataContainer = d3.select(this.dataContainer.nativeElement);
 
-    let y = d3.scaleLinear()
+    const yScale = d3.scaleLinear()
     .domain([0, 10])
-    .range([height, 0]);
+    .range([this.height, 0]);
    
+    // loop over restaurant data object, push into d3's data array
     const data: Array<any> = [];
-
     for(let key in this.restaurantData) {
       data.push([key, this.restaurantData[key]]);
     } 
-
-    const g = svg.selectAll('g .bar')
-                   .data(data);
+  
+    const g = dataContainer.selectAll('g .bar')
+                           .data(data);
 
     // data bind when first data points come in
     const initialG = g.enter()
-    .append('g')
-    .attr('class', 'bar')
-    .attr("transform", function(d, i) { 
-      return "translate(" + (i * (width/data.length)) + ", 0)"; 
-    });
+                      .append('g')
+                      .attr('class', 'bar')
+                     
+   // append rectangle element to g element
+    initialG.append('rect')
 
+     // append x axis labels
     initialG.append("text")
-    .attr('class', 'x_label')
-    .attr('transform', 'translate(20,220)rotate(90)')
-    .style('font-size', '12px')
-    .text(function(d) { return d[0]; });
+            .attr('class', 'x_label')
 
-   // append rectangles to g element
-    const rect = initialG.append('rect')
+    d3.selectAll('g.bar')
+      .attr("transform", (d, i) => { 
+        console.log(this.width/data.length, this.width, data.length);
+        return "translate(" + (i * (this.width/data.length)) + ", 0)"; 
+      });
+   
+    // rect element
+    d3.selectAll('rect')
+    .data(data)
     .style('fill', () => {
       const colors = ['pink', 'orange', 'blue', 'green', 'black', 'purple'];
       const random = Math.floor(Math.random() * colors.length);
       return colors[random];
     })
-    .attr('y', (data) => y(data[1]))
-    .attr('width', () => width/data.length + 'px')
-    .attr('height', (data) => height - y(data[1]) + 'px');
-
-    d3.selectAll('rect')
-      .data(data)
-      .attr('y', (data) => y(data[1]))
-      .attr('height', (data) => height - y(data[1]) + 'px');
-    
-    d3.selectAll('text .x_label')
+    .attr('y', (data) => yScale(data[1]))
+    .attr('width', () => this.width/data.length + 'px')
+    .attr('height', (data) => this.height - yScale(data[1]) + 'px');
+   
+    // x axis label
+    d3.selectAll('text.x_label')
       .data(data)
       .attr('transform', 'translate(20,220)rotate(90)')
       .style('font-size', '12px')
-      .text(function(d) { console.log(d[0]); return d[0];  });
+      .text((d) => d[0] );
 
-
-
-   d3.selectAll('g .bar').data(data).exit().remove();
+    d3.selectAll('g .bar').data(data).exit().remove();
   }
 
 
@@ -121,8 +115,6 @@ export class RestaurantsComponent implements OnInit {
   }
 
   ngOnChanges() {  
-    //if(this.restaurantData) {
-      this.handleData();
-   // }
+    this.handleData();
   }
 }

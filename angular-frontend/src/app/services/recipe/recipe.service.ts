@@ -15,9 +15,9 @@ export class RecipeService {
 
   fetchRecipe(searchTerm: string) {
     return this.http.get(`http://localhost:5000/api/food/recipe/${searchTerm}`, {responseType: 'text'}).subscribe((recipe: string) => {
-    const parsed = JSON.parse(recipe);
-    this.subject.next(parsed);
-    this.clipIdFromUrl(parsed[1]);
+      const parsed = JSON.parse(recipe);
+      this.subject.next(parsed);
+      this.clipIdFromUrl(parsed[1]);
     })
   }
 
