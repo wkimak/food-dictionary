@@ -1,9 +1,9 @@
 .restaurants_chart {
-    border: 1px solid red;
+    border: none;
     margin: auto;
     position: absolute;
-    bottom: 0;
-    height: 300px;
+    top: 100px;
+    height: 450px;
     width: 560px;
     left: 20px;
 }
@@ -12,5 +12,10 @@
     display: block;
     margin: auto;
     position: absolute;
-    bottom: 0;
+}
+
+.y_axis {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;   
 }
