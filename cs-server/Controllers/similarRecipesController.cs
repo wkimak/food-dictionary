@@ -15,22 +15,28 @@ namespace cs_server.Controllers
     {
         
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<Dictionary<string, int>> Get(int id)
         {   
-            try {
+          try {
                 WebRequest request = WebRequest.Create($"https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/similar");
                 request.Headers.Add("X-Mashape-Key: f0mUTn6g2XmshMMiP7HJe4xrUNs0p1OOzyrjsnIMQCaJm629rJ");
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream dataStream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(dataStream);
                 string foodResults = reader.ReadToEnd();
-                // var parsed = JsonConvert.DeserializeObject<dynamic>(foodResults);
-                // string instructions = parsed.recipes[0].instructions;
-                // string url = parsed.recipes[0].sourceUrl;
-                // string [] output = new string [] { instructions, url };
-                return foodResults;
+                var parsed = JsonConvert.DeserializeObject<dynamic>(foodResults);
+              
+                Dictionary<string, int> output = new Dictionary<string, int>();
+
+                for(int i = 0; i < parsed.Count; i++) {
+                    if(!output.ContainsKey((string)parsed[i].title)) {
+                      output.Add((string)parsed[i].title, (int)parsed[i].readyInMinutes);
+                    }
+                }
+
+                return output;
           } catch(Exception WebException) {
-                Console.WriteLine("ERROR fetching ingrediants", WebException);
+                Console.WriteLine("ERROR fetching similar foods", WebException);
                 return null;
           }
         }

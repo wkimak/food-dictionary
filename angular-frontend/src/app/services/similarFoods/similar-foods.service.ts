@@ -7,11 +7,12 @@ import { Observable, Subject } from 'rxjs';
 })
 export class SimilarFoodsService {
   
-  private subject = new Subject<Array<any>>();
+  private subject = new Subject<any>();
   similarFoods = this.subject.asObservable();
   constructor(private http: HttpClient) { }
 
   fetchSimilarFoods(id: number) {
+    console.log(id);
     return this.http.get(`http://localhost:5000/api/food/similarRecipes/${id}`).subscribe((similarRecipes: any) => {
       this.subject.next(similarRecipes);
     }) 

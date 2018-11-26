@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FoodFeedComponent implements OnInit {
 
     @Input() restaurantData: Array<any>;
+    @Input() similarFoodsData: any;
 
   constructor() { }
 
